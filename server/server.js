@@ -30,10 +30,12 @@ if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
 // 3. Middleware
 // =====================================
 
-app.use(express.json({ limit: "10kb" }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Serve portfolio files from the parent folder
-app.use(express.static(path.join(__dirname, "..")));
+app.post("/send-email", async (req, res) => {
+  // Your Nodemailer email-sending code
+});
 
 // =====================================
 // 4. Configure Gmail with Nodemailer
@@ -169,3 +171,4 @@ app.use((error, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`Portfolio running at http://localhost:${PORT}`);
 });
+
