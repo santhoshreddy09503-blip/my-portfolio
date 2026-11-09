@@ -1,3 +1,7 @@
+try {
+    require("dotenv").config();
+} catch {}
+
 const nodemailer = require("nodemailer");
 
 module.exports = async (req, res) => {
@@ -111,3 +115,4 @@ ${clean.message}`
         });
     }
 };
+
