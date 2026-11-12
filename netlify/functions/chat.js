@@ -19,9 +19,15 @@ exports.handler = async (event) => {
 
     const apiKey = process.env.GEMINI_API_KEY;
     const model = process.env.GEMINI_MODEL;
-    if (!apiKey || !model) {
-        console.error("Missing Gemini environment variables.");
-        return jsonResponse(503, { success: false, message: "The AI assistant is not configured." });
+    const missingVariables = [];
+    if (!apiKey) missingVariables.push("GEMINI_API_KEY");
+    if (!model) missingVariables.push("GEMINI_MODEL");
+    if (missingVariables.length > 0) {
+        console.error("Missing Gemini environment variables:", missingVariables.join(", "));
+        return jsonResponse(503, {
+            success: false,
+            message: `AI assistant is not configured. Set ${missingVariables.join(" and ")} in Netlify's function environment, then redeploy.`
+        });
     }
 
     let requestBody = event.body;
