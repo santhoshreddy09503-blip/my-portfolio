@@ -75,7 +75,7 @@ module.exports = async (req, res) => {
             console.error("Missing Gmail environment variables.");
             return res.status(503).json({
                 success: false,
-                message: "Email service is not configured. Add GMAIL_USER and GMAIL_APP_PASSWORD in Vercel settings."
+                message: "Email service is not configured. Add GMAIL_USER and GMAIL_APP_PASSWORD to your deployment environment."
             });
         }
 
