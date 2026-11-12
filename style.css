@@ -1487,10 +1487,9 @@ a {
 
 
 
-html {
-
+.hero,
+main {
   perspective: 1200px;
-
 }
 
 
