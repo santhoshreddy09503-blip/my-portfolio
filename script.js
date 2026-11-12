@@ -72,6 +72,77 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Portfolio AI assistant
+  const chatForm = document.getElementById("chatForm");
+  const chatInput = document.getElementById("chatInput");
+  const chatMessages = document.getElementById("chatMessages");
+  const chatPanel = document.getElementById("chatPanel");
+  const chatToggle = document.getElementById("chatToggle");
+  const chatClose = document.getElementById("chatClose");
+  const chatSend = document.getElementById("chatSend");
+  const conversation = [];
+
+  if (chatForm && chatInput && chatMessages && chatPanel && chatToggle && chatClose && chatSend) {
+    const setChatOpen = (isOpen) => {
+      chatPanel.hidden = !isOpen;
+      chatToggle.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) chatInput.focus();
+    };
+
+    const appendMessage = (text, role) => {
+      const message = document.createElement("p");
+      message.className = `chat-message ${role}`;
+      message.textContent = text;
+      chatMessages.appendChild(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return message;
+    };
+
+    chatToggle.addEventListener("click", () => setChatOpen(chatPanel.hidden));
+    chatClose.addEventListener("click", () => setChatOpen(false));
+
+    chatForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const message = chatInput.value.trim();
+      if (!message) return;
+
+      appendMessage(message, "user");
+      chatInput.value = "";
+      chatInput.disabled = true;
+      chatSend.disabled = true;
+      const pendingMessage = appendMessage("Thinking...", "assistant pending");
+
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ message, history: conversation.slice(-8) })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.success !== true || typeof result.answer !== "string") {
+          throw new Error(result.message || `Request failed (HTTP ${response.status}).`);
+        }
+
+        pendingMessage.textContent = result.answer;
+        conversation.push(
+          { role: "user", text: message },
+          { role: "model", text: result.answer }
+        );
+        if (conversation.length > 8) conversation.splice(0, conversation.length - 8);
+      } catch (error) {
+        console.error("Portfolio chat error:", error);
+        pendingMessage.textContent = error.message || "Unable to reach the assistant. Please try again.";
+        pendingMessage.classList.add("error");
+      } finally {
+        pendingMessage.classList.remove("pending");
+        chatInput.disabled = false;
+        chatSend.disabled = false;
+        chatInput.focus();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    });
+  }
+
   function showStatus(message, type) {
     formStatus.textContent = message;
     formStatus.className = `form-status ${type}`;

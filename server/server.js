@@ -34,6 +34,7 @@ app.use(express.static(ROOT_DIR));
 const contactHandler = require("../api/contact");
 const healthHandler = require("../api/health");
 const emailCheckHandler = require("../api/email-check");
+const chatHandler = require("../netlify/functions/chat").handler;
 
 // =====================================
 // 4. API Endpoints
@@ -42,6 +43,19 @@ const emailCheckHandler = require("../api/email-check");
 app.all("/api/health", healthHandler);
 app.all("/api/email-check", emailCheckHandler);
 app.all("/api/contact", contactHandler);
+app.all("/api/chat", async (req, res, next) => {
+    try {
+        const result = await chatHandler({
+            httpMethod: req.method,
+            body: JSON.stringify(req.body)
+        });
+        res.status(result.statusCode);
+        Object.entries(result.headers || {}).forEach(([name, value]) => res.setHeader(name, value));
+        res.send(result.body);
+    } catch (error) {
+        next(error);
+    }
+});
 
 // =====================================
 // 7. Unknown API routes

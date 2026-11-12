@@ -1,0 +1,55 @@
+{
+  "name": "Gaddampalli Santhosh Reddy",
+  "headline": "Aspiring Software Engineer and B.Tech Computer Science and Engineering graduate",
+  "location": "Ranga Reddy, Telangana, India",
+  "contact": {
+    "email": "santhoshreddy09503@gmail.com",
+    "phone": "+91 9391743986"
+  },
+  "career": "A motivated and detail-oriented graduate interested in starting a professional career, contributing to a dynamic organization, and continuing to learn about technology and software engineering.",
+  "education": [
+    {
+      "qualification": "B.Tech in Computer Science and Engineering",
+      "institution": "Bharat Institute of Engineering and Technology",
+      "period": "2021–2025",
+      "result": "CGPA 6.53"
+    },
+    {
+      "qualification": "Intermediate (MPC)",
+      "institution": "Narayana Junior College",
+      "period": "2019–2021",
+      "result": "67%"
+    },
+    {
+      "qualification": "Secondary School Certificate (SSC)",
+      "institution": "Lords High School",
+      "period": "2017",
+      "result": "CGPA 7.0"
+    }
+  ],
+  "skills": {
+    "programming": ["Python (basics)", "Java (basics)", "Object-oriented design"],
+    "webAndDatabase": ["HTML5", "CSS3", "Flexbox", "CSS Grid", "JavaScript (ES6+)", "SQL"],
+    "tools": ["VS Code", "Microsoft Word", "Git", "GitHub"],
+    "softSkills": ["Problem solving", "Verbal ability", "Quick learning", "Teamwork", "Adaptability"]
+  },
+  "projects": [
+    {
+      "name": "Decentralization of a Voting System Using Blockchain",
+      "year": 2024,
+      "technologies": ["Blockchain", "Smart contracts", "Cryptography", "Python"],
+      "summary": "A blockchain-based voting system designed for transparent, immutable elections, with smart contracts for voter registration, ballot casting, and tallying, plus cryptography to protect voter privacy."
+    },
+    {
+      "name": "Mobile Banking Application",
+      "year": 2025,
+      "technologies": ["Java", "SQL", "Data encryption", "UI/UX design"],
+      "summary": "A banking application concept for viewing accounts, tracking balances, and transferring funds, with authentication, role-based access, and encrypted transaction data."
+    }
+  ],
+  "languages": ["English", "Telugu"],
+  "opportunities": "Santhosh is actively seeking software engineering opportunities.",
+  "socialLinks": {
+    "linkedin": "A LinkedIn URL is not provided in the portfolio yet."
+  }
+}

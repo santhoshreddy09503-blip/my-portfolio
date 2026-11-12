@@ -327,6 +327,35 @@
     </div>
   </footer>
 
+  <section class="chat-widget" aria-label="Portfolio AI assistant">
+    <div class="chat-panel" id="chatPanel" hidden>
+      <div class="chat-header">
+        <div>
+          <strong>Ask about Santhosh</strong>
+          <span>Portfolio AI assistant</span>
+        </div>
+        <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">
+          <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+        <p class="chat-message assistant">Hi! Ask me about Santhosh's skills, education, or projects.</p>
+      </div>
+      <form class="chat-form" id="chatForm">
+        <label class="sr-only" for="chatInput">Your question</label>
+        <input id="chatInput" name="message" type="text" maxlength="1200" placeholder="Ask a question..."
+          autocomplete="off" required>
+        <button class="chat-send" id="chatSend" type="submit" aria-label="Send message">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+    <button class="chat-toggle" id="chatToggle" type="button" aria-expanded="false" aria-controls="chatPanel">
+      <i class="fas fa-comments" aria-hidden="true"></i>
+      <span>Ask AI</span>
+    </button>
+  </section>
+
   <script src="./script.js"></script>
 </body>
 

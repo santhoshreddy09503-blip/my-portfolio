@@ -15,6 +15,7 @@ Check the backend at http://localhost:3000/api/health.
 - Do not commit `.env` or publish your Gmail App Password.
 - The contact form requires Gmail 2-Step Verification and an App Password.
 - For Netlify, set `GMAIL_USER` and `GMAIL_APP_PASSWORD` in the site's environment variables and redeploy. The `/api/contact` route is served by the function in `netlify/functions/contact.js`.
+- The portfolio chatbot uses `GEMINI_API_KEY` and `GEMINI_MODEL`; set both in Netlify's environment variables and redeploy. Its profile answers come from `knowledge/profile.json`, and `/api/chat` is served by `netlify/functions/chat.js`.
 - Keep `index.html`, `style.css`, and `script.js` in the project root.
 - Put your profile image at `photo1.png` in the project root, or update the image path in index.html.
 - Replace placeholder LinkedIn links with your actual profile URL.
